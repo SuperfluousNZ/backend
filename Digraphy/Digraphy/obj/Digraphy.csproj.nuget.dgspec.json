@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\Digraphy\\Digraphy.csproj": {}
+    "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\backend\\Digraphy\\Digraphy\\Digraphy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\Digraphy\\Digraphy.csproj": {
+    "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\backend\\Digraphy\\Digraphy\\Digraphy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\Digraphy\\Digraphy.csproj",
+        "projectUniqueName": "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\backend\\Digraphy\\Digraphy\\Digraphy.csproj",
         "projectName": "Digraphy",
-        "projectPath": "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\Digraphy\\Digraphy.csproj",
+        "projectPath": "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\backend\\Digraphy\\Digraphy\\Digraphy.csproj",
         "packagesPath": "C:\\Users\\alexh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\Digraphy\\obj\\",
+        "outputPath": "C:\\Users\\alexh\\OneDrive\\Documents\\Engineering\\Personal-Project\\Digraphy\\backend\\Digraphy\\Digraphy\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alexh\\AppData\\Roaming\\NuGet\\NuGet.Config"

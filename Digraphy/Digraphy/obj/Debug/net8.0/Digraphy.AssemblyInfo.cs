@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Digraphy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eda96ebbe2a6e32d4904a84d882be54ca4b2a300")]
 [assembly: System.Reflection.AssemblyProductAttribute("Digraphy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Digraphy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
