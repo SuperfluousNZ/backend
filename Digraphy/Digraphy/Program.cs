@@ -23,11 +23,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
+    app.UseSwaggerUI(options =>
     {
         // Update the SwaggerUI configuration to specify the base URL
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "DigraphyApi");
-        c.RoutePrefix = string.Empty;
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "DigraphyApi");
+        options.RoutePrefix = string.Empty;
     });
 }
 
