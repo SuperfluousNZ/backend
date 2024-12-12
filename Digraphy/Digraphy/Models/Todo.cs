@@ -2,5 +2,6 @@ namespace Digraphy.Models;
 
 public class Todo
 {
-    // TODO
+    public int Id { get; set; }
+    public string Name { get; set; }
 }
