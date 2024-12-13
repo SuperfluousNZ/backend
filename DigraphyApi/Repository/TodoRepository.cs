@@ -14,40 +14,40 @@ public class TodoRepository : ITodoRepository
         _context = context;
     }
     
-    public ICollection<Todo> GetTodos()
+    public ICollection<Todo> GetTodosAsync()
     {
         return _context.Todos.OrderBy(t => t.Id).ToList();
     }
 
-    public Todo GetTodo(int todoId)
+    public Todo? GetTodoAsync(int todoId)
     {
         return _context.Todos.FirstOrDefault(t => t.Id == todoId);
     }
 
-    public bool UpdateTodo(Todo todo)
+    public bool UpdateTodoAsync(Todo todo)
     {
         _context.Update(todo);
-        return Save();
+        return SaveAsync();
     }
 
-    public bool CreateTodo(Todo todo)
+    public bool CreateTodoAsync(Todo todo)
     {
         _context.Add(todo);
-        return Save();
+        return SaveAsync();
     }
 
-    public bool DeleteTodo(Todo todo)
+    public bool DeleteTodoAsync(Todo todo)
     {
         _context.Remove(todo);
-        return Save();
+        return SaveAsync();
     }
 
-    public bool TodoExists(int todoId)
+    public bool TodoExistsAsync(int todoId)
     {
         return _context.Todos.Any(t => t.Id == todoId);
     }
 
-    public bool Save()
+    public bool SaveAsync()
     {
         var saved = _context.SaveChanges();
         return saved > 0;

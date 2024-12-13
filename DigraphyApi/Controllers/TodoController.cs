@@ -23,7 +23,7 @@ public class TodoController : Controller
     [ProducesResponseType(200, Type = typeof(IEnumerable<Todo>))]
     public IActionResult GetTodos()
     {
-        var todos = _dtoMapper.Map<List<TodoDto>>(_todoRepository.GetTodos());
+        var todos = _dtoMapper.Map<List<TodoDto>>(_todoRepository.GetTodosAsync());
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -36,10 +36,10 @@ public class TodoController : Controller
     [ProducesResponseType(400)]
     public IActionResult GetTodo(int todoId)
     {
-        if (!_todoRepository.TodoExists(todoId))
+        if (!_todoRepository.TodoExistsAsync(todoId))
             return NotFound();
         
-        var todo = _dtoMapper.Map<TodoDto>(_todoRepository.GetTodo(todoId));
+        var todo = _dtoMapper.Map<TodoDto>(_todoRepository.GetTodoAsync(todoId));
     
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -57,20 +57,20 @@ public class TodoController : Controller
         if (updatedTodo == null)
             return BadRequest(ModelState);
 
-        if (!_todoRepository.TodoExists(todoId))
+        if (!_todoRepository.TodoExistsAsync(todoId))
             return NotFound();
 
         if (!ModelState.IsValid)
             return BadRequest();
         
-        var existingTodo = _todoRepository.GetTodo(todoId);
+        var existingTodo = _todoRepository.GetTodoAsync(todoId);
         
         if (!string.IsNullOrEmpty(updatedTodo.Name))
         {
             existingTodo.Name = updatedTodo.Name;
         }
 
-        if (!_todoRepository.UpdateTodo(existingTodo))
+        if (!_todoRepository.UpdateTodoAsync(existingTodo))
         {
             ModelState.AddModelError("", "Something went wrong updating todo");
             return StatusCode(500, ModelState);
@@ -92,7 +92,7 @@ public class TodoController : Controller
         
         var todoMap = _dtoMapper.Map<Todo>(todoCreate);
 
-        if (_todoRepository.CreateTodo(todoMap)) return Ok("Successfully created");
+        if (_todoRepository.CreateTodoAsync(todoMap)) return Ok("Successfully created");
         
         ModelState.AddModelError("", "Something went wrong while saving");
         return StatusCode(500, ModelState);
@@ -105,19 +105,19 @@ public class TodoController : Controller
     [ProducesResponseType(404)]
     public IActionResult DeleteTodo(int todoId)
     {
-        if (!_todoRepository.TodoExists(todoId))
+        if (!_todoRepository.TodoExistsAsync(todoId))
         {
             return NotFound();
         }
 
-        var todoToDelete = _todoRepository.GetTodo(todoId);
+        var todoToDelete = _todoRepository.GetTodoAsync(todoId);
 
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        if (!_todoRepository.DeleteTodo(todoToDelete))
+        if (!_todoRepository.DeleteTodoAsync(todoToDelete))
         {
             ModelState.AddModelError("", "Something went wrong deleting the todo");
         }

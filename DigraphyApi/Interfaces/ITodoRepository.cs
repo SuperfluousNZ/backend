@@ -4,12 +4,12 @@ namespace Digraphy.Interfaces;
 
 public interface ITodoRepository
 {
-    ICollection<Todo> GetTodos();
-    Todo GetTodo(int TodoId);
-    bool UpdateTodo(Todo todo);
-    bool CreateTodo(Todo todo);
-    bool DeleteTodo(Todo todo);
-    bool TodoExists(int todoId);
-    bool Save();
+    ICollection<Todo> GetTodosAsync();
+    Todo? GetTodoAsync(int TodoId);
+    bool UpdateTodoAsync(Todo todo);
+    bool CreateTodoAsync(Todo todo);
+    bool DeleteTodoAsync(Todo todo);
+    bool TodoExistsAsync(int todoId);
+    bool SaveAsync();
     
 }
