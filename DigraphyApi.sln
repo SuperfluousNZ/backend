@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digraphy", "Digraphy\Digraphy.csproj", "{2EB4BB0B-E4BD-4143-9A5B-9BDA6333B7E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigraphyApi", "DigraphyApi\DigraphyApi.csproj", "{2EB4BB0B-E4BD-4143-9A5B-9BDA6333B7E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

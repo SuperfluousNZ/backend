@@ -1,4 +1,4 @@
-namespace Digraphy.Dto;
+namespace DigraphyApi.Dto;
 
 public class PutTodoDto
 {

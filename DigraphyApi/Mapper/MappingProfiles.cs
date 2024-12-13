@@ -1,8 +1,8 @@
 using AutoMapper;
-using Digraphy.Dto;
-using Digraphy.Models;
+using DigraphyApi.Dto;
+using DigraphyApi.Models;
 
-namespace Digraphy.Mapper;
+namespace DigraphyApi.Mapper;
 
 // can't rememeber if we need this or not
 public class MappingProfiles : Profile

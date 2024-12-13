@@ -1,7 +1,7 @@
-using Digraphy.Models;
+using DigraphyApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Digraphy.Data;
+namespace DigraphyApi.Data;
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }

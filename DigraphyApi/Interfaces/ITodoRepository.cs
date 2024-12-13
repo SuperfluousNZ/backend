@@ -1,15 +1,15 @@
-using Digraphy.Models;
+using DigraphyApi.Models;
 
-namespace Digraphy.Interfaces;
+namespace DigraphyApi.Interfaces;
 
 public interface ITodoRepository
 {
-    ICollection<Todo> GetTodosAsync();
-    Todo? GetTodoAsync(int TodoId);
-    bool UpdateTodoAsync(Todo todo);
-    bool CreateTodoAsync(Todo todo);
-    bool DeleteTodoAsync(Todo todo);
-    bool TodoExistsAsync(int todoId);
-    bool SaveAsync();
+    Task<ICollection<Todo>> GetTodosAsync();
+    Task<Todo?> GetTodoAsync(int todoId);
+    Task<bool> UpdateTodoAsync(Todo todo);
+    Task<bool> CreateTodoAsync(Todo todo);
+    Task<bool> DeleteTodoAsync(Todo todo);
+    Task<bool> TodoExistsAsync(int todoId);
+    Task<bool> SaveAsync();
     
 }

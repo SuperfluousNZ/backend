@@ -1,29 +1,20 @@
 using AutoMapper;
-using Digraphy.Dto;
-using Digraphy.Models;
-using Digraphy.Interfaces;
+using DigraphyApi.Dto;
+using DigraphyApi.Models;
+using DigraphyApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Digraphy.Controllers;
+namespace DigraphyApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TodoController : Controller
+public class TodoController(ITodoRepository todoRepository, IMapper mapper) : Controller
 {
-    private readonly ITodoRepository _todoRepository;
-    private readonly IMapper _dtoMapper;
-
-    public TodoController(ITodoRepository todoRepository, IMapper mapper)
-    {
-        _todoRepository = todoRepository;
-        _dtoMapper = mapper;
-    }
-    
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Todo>))]
-    public IActionResult GetTodos()
+    public async Task<IActionResult> GetTodos()
     {
-        var todos = _dtoMapper.Map<List<TodoDto>>(_todoRepository.GetTodosAsync());
+        var todos = mapper.Map<List<TodoDto>>(await todoRepository.GetTodosAsync());
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -34,12 +25,12 @@ public class TodoController : Controller
     [HttpGet("{todoId}")]
     [ProducesResponseType(200, Type = typeof(Todo))]
     [ProducesResponseType(400)]
-    public IActionResult GetTodo(int todoId)
+    public async Task<IActionResult> GetTodo(int todoId)
     {
-        if (!_todoRepository.TodoExistsAsync(todoId))
+        if (!(await todoRepository.TodoExistsAsync(todoId)))
             return NotFound();
         
-        var todo = _dtoMapper.Map<TodoDto>(_todoRepository.GetTodoAsync(todoId));
+        var todo = mapper.Map<TodoDto>(await todoRepository.GetTodoAsync(todoId));
     
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -51,48 +42,39 @@ public class TodoController : Controller
     [ProducesResponseType(400)]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
-    public IActionResult UpdateTodo(int todoId,
+    public async Task<IActionResult> UpdateTodo(int todoId,
         [FromBody] PutTodoDto updatedTodo)
     {
-        if (updatedTodo == null)
-            return BadRequest(ModelState);
-
-        if (!_todoRepository.TodoExistsAsync(todoId))
+        if (!(await todoRepository.TodoExistsAsync(todoId)))
             return NotFound();
 
         if (!ModelState.IsValid)
             return BadRequest();
         
-        var existingTodo = _todoRepository.GetTodoAsync(todoId);
+        var existingTodo = await todoRepository.GetTodoAsync(todoId);
         
         if (!string.IsNullOrEmpty(updatedTodo.Name))
         {
-            existingTodo.Name = updatedTodo.Name;
+            if (existingTodo != null) existingTodo.Name = updatedTodo.Name;
         }
 
-        if (!_todoRepository.UpdateTodoAsync(existingTodo))
-        {
-            ModelState.AddModelError("", "Something went wrong updating todo");
-            return StatusCode(500, ModelState);
-        }
+        if (existingTodo == null || await todoRepository.UpdateTodoAsync(existingTodo)) return NoContent();
+        ModelState.AddModelError("", "Something went wrong updating todo");
+        return StatusCode(500, ModelState);
 
-        return NoContent();
     }
     
     [HttpPost("/todo")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
-    public IActionResult CreateTodo([FromBody] TodoDto todoCreate)
+    public async Task<IActionResult> CreateTodo([FromBody] TodoDto todoCreate)
     {
-        if (todoCreate == null)
-            return BadRequest(ModelState);
-
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
         
-        var todoMap = _dtoMapper.Map<Todo>(todoCreate);
+        var todo = mapper.Map<Todo>(todoCreate);
 
-        if (_todoRepository.CreateTodoAsync(todoMap)) return Ok("Successfully created");
+        if (await todoRepository.CreateTodoAsync(todo)) return NoContent();
         
         ModelState.AddModelError("", "Something went wrong while saving");
         return StatusCode(500, ModelState);
@@ -103,21 +85,21 @@ public class TodoController : Controller
     [ProducesResponseType(400)]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
-    public IActionResult DeleteTodo(int todoId)
+    public async Task<IActionResult> DeleteTodo(int todoId)
     {
-        if (!_todoRepository.TodoExistsAsync(todoId))
+        var todoToDelete = await todoRepository.GetTodoAsync(todoId);
+        
+        if (todoToDelete == null)
         {
             return NotFound();
         }
-
-        var todoToDelete = _todoRepository.GetTodoAsync(todoId);
 
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        if (!_todoRepository.DeleteTodoAsync(todoToDelete))
+        if (!await todoRepository.DeleteTodoAsync(todoToDelete))
         {
             ModelState.AddModelError("", "Something went wrong deleting the todo");
         }

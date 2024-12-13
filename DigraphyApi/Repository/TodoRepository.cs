@@ -1,55 +1,48 @@
-using Digraphy.Data;
-using Digraphy.Models;
-using Digraphy.Interfaces;
+using DigraphyApi.Data;
+using DigraphyApi.Models;
+using DigraphyApi.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Digraphy.Repository;
+namespace DigraphyApi.Repository;
 
-public class TodoRepository : ITodoRepository
+public class TodoRepository(AppDbContext context) : ITodoRepository
 {
-    private readonly AppDbContext _context;
-    
-    public TodoRepository(AppDbContext context)
+    public async Task<ICollection<Todo>> GetTodosAsync()
     {
-        _context = context;
-    }
-    
-    public ICollection<Todo> GetTodosAsync()
-    {
-        return _context.Todos.OrderBy(t => t.Id).ToList();
+        return await context.Todos.OrderBy(t => t.Id).ToListAsync();
     }
 
-    public Todo? GetTodoAsync(int todoId)
+    public async Task<Todo?> GetTodoAsync(int todoId)
     {
-        return _context.Todos.FirstOrDefault(t => t.Id == todoId);
+        return await context.Todos.FirstOrDefaultAsync(t => t.Id == todoId);
     }
 
-    public bool UpdateTodoAsync(Todo todo)
+    public async Task<bool> UpdateTodoAsync(Todo todo)
     {
-        _context.Update(todo);
-        return SaveAsync();
+        context.Update(todo);
+        return await SaveAsync();
     }
 
-    public bool CreateTodoAsync(Todo todo)
+    public async Task<bool> CreateTodoAsync(Todo todo)
     {
-        _context.Add(todo);
-        return SaveAsync();
+        context.Add(todo);
+        return await SaveAsync();
     }
 
-    public bool DeleteTodoAsync(Todo todo)
+    public async Task<bool> DeleteTodoAsync(Todo todo)
     {
-        _context.Remove(todo);
-        return SaveAsync();
+        context.Remove(todo);
+        return await SaveAsync();
     }
 
-    public bool TodoExistsAsync(int todoId)
+    public async Task<bool> TodoExistsAsync(int todoId)
     {
-        return _context.Todos.Any(t => t.Id == todoId);
+        return await context.Todos.AnyAsync(t => t.Id == todoId);
     }
 
-    public bool SaveAsync()
+    public async Task<bool> SaveAsync()
     {
-        var saved = _context.SaveChanges();
+        var saved = await context.SaveChangesAsync();
         return saved > 0;
     }
 }
