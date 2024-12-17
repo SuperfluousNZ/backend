@@ -4,8 +4,7 @@
 
 ### Opening Project
 - Clone project and open in Rider or VSCode.
-- Navigate to the CapstoneBackend folder `\capstone-project-team_13\project\backend\CapstoneBackend
-  `.
+- Navigate to the CapstoneBackend folder `\backend\DigraphyApi`.
 - Download the dotnet SDK from https://aka.ms/dotnet-download (Make sure to download .Net 8.0 and download the installer for your device).
 
 ### Downloading entity Framework
@@ -29,13 +28,5 @@
 - Run `dotnet ef migrations add InititalMigration`.
 - Run `dotnet ef database update`.
 
-### Seed the database
-- Run `dotnet run seeddata`.
-- `Ctrl + C` when it is complete.
-
 ### Run the application
 - Run `dotnet run`, (this should automatically launch a tab in your browser).
-
-### Create Tunnel
-- Open `ngrok.exe`.
-- Type `ngrok http http://localhost:5297/`.
