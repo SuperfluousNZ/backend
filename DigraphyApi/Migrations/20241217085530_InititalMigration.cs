@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Digraphy.Migrations
+namespace DigraphyApi.Migrations
 {
     /// <inheritdoc />
     public partial class InititalMigration : Migration

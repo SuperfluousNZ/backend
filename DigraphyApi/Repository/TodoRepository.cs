@@ -17,32 +17,28 @@ public class TodoRepository(AppDbContext context) : ITodoRepository
         return await context.Todos.FirstOrDefaultAsync(t => t.Id == todoId);
     }
 
-    public async Task<bool> UpdateTodoAsync(Todo todo)
+    public async Task<Todo> UpdateTodoAsync(Todo todo)
     {
         context.Update(todo);
-        return await SaveAsync();
+        await context.SaveChangesAsync();
+        return todo;
     }
 
-    public async Task<bool> CreateTodoAsync(Todo todo)
+    public async Task<Todo> CreateTodoAsync(Todo todo)
     {
-        context.Add(todo);
-        return await SaveAsync();
+        await context.AddAsync(todo);
+        await context.SaveChangesAsync();
+        return todo;
     }
 
-    public async Task<bool> DeleteTodoAsync(Todo todo)
+    public async Task DeleteTodoAsync(Todo todo)
     {
         context.Remove(todo);
-        return await SaveAsync();
+        await context.SaveChangesAsync();
     }
 
     public async Task<bool> TodoExistsAsync(int todoId)
     {
         return await context.Todos.AnyAsync(t => t.Id == todoId);
-    }
-
-    public async Task<bool> SaveAsync()
-    {
-        var saved = await context.SaveChangesAsync();
-        return saved > 0;
     }
 }

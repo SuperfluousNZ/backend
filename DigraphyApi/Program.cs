@@ -1,7 +1,8 @@
-﻿using Digraphy.Data;
-using Digraphy.Interfaces;
-using Digraphy.Mapper;
-using Digraphy.Repository;
+﻿using DigraphyApi.Data;
+using DigraphyApi.Interfaces;
+using DigraphyApi.Mapper;
+using DigraphyApi.Repository;
+using DigraphyApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+builder.Services.AddScoped<ITodoService, TodoService>();
 builder.Services.AddDbContextPool<AppDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DigraphyDatabase")));
 builder.Services.AddEndpointsApiExplorer();
@@ -20,7 +22,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
@@ -31,7 +33,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

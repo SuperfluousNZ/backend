@@ -6,10 +6,8 @@ public interface ITodoRepository
 {
     Task<ICollection<Todo>> GetTodosAsync();
     Task<Todo?> GetTodoAsync(int todoId);
-    Task<bool> UpdateTodoAsync(Todo todo);
-    Task<bool> CreateTodoAsync(Todo todo);
-    Task<bool> DeleteTodoAsync(Todo todo);
+    Task<Todo> UpdateTodoAsync(Todo todo);
+    Task<Todo> CreateTodoAsync(Todo todo);
+    Task DeleteTodoAsync(Todo todo);
     Task<bool> TodoExistsAsync(int todoId);
-    Task<bool> SaveAsync();
-    
 }

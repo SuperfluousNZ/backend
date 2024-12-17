@@ -13,5 +13,8 @@ public class MappingProfiles : Profile
         CreateMap<Todo, TodoDto>();
         CreateMap<TodoDto, Todo>()
             .ForMember(dest => dest.Id, opt => opt.Ignore());
+        CreateMap<Todo, CreateTodoDto>();
+        CreateMap<CreateTodoDto, Todo>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
     }
 }

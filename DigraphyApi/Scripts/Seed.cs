@@ -1,5 +1,5 @@
-using Digraphy.Data;
-using Digraphy.Models;
+using DigraphyApi.Data;
+using DigraphyApi.Models;
 
 namespace Digraphy.Scripts;
 
