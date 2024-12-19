@@ -31,7 +31,7 @@ public class TodoController(ITodoRepository todoRepository, ITodoService todoSer
     
     [HttpPut("{todoId}")]
     [ProducesResponseType(400)]
-    [ProducesResponseType(204)]
+    [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<ActionResult<TodoDto>> UpdateTodo(int todoId,
         [FromBody] PutTodoDto updatedTodo)
