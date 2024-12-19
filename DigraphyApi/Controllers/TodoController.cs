@@ -41,7 +41,7 @@ public class TodoController(ITodoRepository todoRepository, ITodoService todoSer
     }
     
     [HttpPost("/todo")]
-    [ProducesResponseType(204)]
+    [ProducesResponseType(201)]
     [ProducesResponseType(400)]
     public async Task<IActionResult> CreateTodo([FromBody] CreateTodoDto createTodoDto)
     {
