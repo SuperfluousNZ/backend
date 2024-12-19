@@ -1,4 +1,3 @@
-using AutoMapper;
 using DigraphyApi.Dto;
 using DigraphyApi.Models;
 using DigraphyApi.Interfaces;
@@ -8,7 +7,7 @@ namespace DigraphyApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TodoController(ITodoRepository todoRepository, ITodoService todoService, IMapper mapper) : Controller
+public class TodoController(ITodoService todoService) : Controller
 {
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Todo>))]
@@ -34,7 +33,7 @@ public class TodoController(ITodoRepository todoRepository, ITodoService todoSer
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     public async Task<ActionResult<TodoDto>> UpdateTodo(int todoId,
-        [FromBody] PutTodoDto updatedTodo)
+        [FromBody] CreateTodoDto updatedTodo)
     {
         var todoResult = await todoService.UpdateTodoAsync(todoId, updatedTodo);
         return todoResult.ToActionResult(Ok);
@@ -56,6 +55,6 @@ public class TodoController(ITodoRepository todoRepository, ITodoService todoSer
     public async Task<IActionResult> DeleteTodo(int todoId)
     {
         var todoResult = await todoService.DeleteTodoAsync(todoId);
-        return todoResult.ToActionResult(Ok);
+        return todoResult.ToActionResult(NoContent);
     }
 }

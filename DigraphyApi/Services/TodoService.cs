@@ -28,7 +28,7 @@ public class TodoService(ITodoRepository todoRepository, IMapper mapper) : ITodo
         return mapper.Map<TodoDto>(todo);
     }
 
-    public async Task<Result<TodoDto>> UpdateTodoAsync(int todoId, PutTodoDto todoDto)
+    public async Task<Result<TodoDto>> UpdateTodoAsync(int todoId, CreateTodoDto todoDto)
     {
         var existingTodo = await todoRepository.GetTodoAsync(todoId);
         

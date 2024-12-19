@@ -4,7 +4,7 @@
 
 ### Opening Project
 - Clone project and open in Rider or VSCode.
-- Navigate to the CapstoneBackend folder `\backend\DigraphyApi`.
+- Navigate to the API folder `\backend\DigraphyApi`.
 - Download the dotnet SDK from https://aka.ms/dotnet-download (Make sure to download .Net 8.0 and download the installer for your device).
 
 ### Downloading entity Framework
