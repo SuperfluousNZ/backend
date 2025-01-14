@@ -12,4 +12,6 @@ public class Title
     public DateTime ReleasedAtUtc { get; set; }
     public string Description { get; set; } = null!;
     public int? TmdbId { get; set; }
+    public List<Factoid> Factoids { get; set; } = [];
+    public List<Collection> Collections { get; set; } = [];
 }

@@ -16,6 +16,12 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // TODO
+        modelBuilder.Entity<Title>()
+            .HasMany(t => t.Factoids)
+            .WithMany(f => f.Titles);
+
+        modelBuilder.Entity<Title>()
+            .HasMany(t => t.Collections)
+            .WithMany(c => c.Titles);
     }
 }
