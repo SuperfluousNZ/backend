@@ -7,9 +7,11 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<Todo> Todos { get; set; }
-    public DbSet<Title> Titles { get; set; }
+    public DbSet<Collection> Collections { get; set; }
     public DbSet<Factoid> Factoids { get; set; }
+    public DbSet<Title> Titles { get; set; }
+    public DbSet<Todo> Todos { get; set; }
+    public DbSet<Topic> Topics { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,5 +27,9 @@ public class AppDbContext : DbContext
             .HasMany(t => t.RequiredFactoids)
             .WithMany(f => f.DependentTitles)
             .UsingEntity<FactoidsImportance>();
+
+        modelBuilder.Entity<Factoid>()
+            .HasMany(f => f.Topics)
+            .WithMany(t => t.AffiliatedFactoids);
     }
 }

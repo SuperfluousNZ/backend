@@ -24,4 +24,9 @@ public class Factoid
     /// The importance of this factoid for dependent titles.
     /// </summary>
     public List<FactoidsImportance> DependentTitlesImportance { get; set; } = [];
+
+    /// <summary>
+    /// Topics that are related to this factoid.
+    /// </summary>
+    public List<Topic> Topics { get; set; } = [];
 }
