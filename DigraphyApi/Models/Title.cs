@@ -34,4 +34,16 @@ public class Title
     /// The importance of factoids that are required to know prior to this title.
     /// </summary>
     public List<FactoidsImportance> RequiredFactoidsImportance { get; set; } = [];
+
+    /// <summary>
+    /// Orders that contain this title. Note that this relation doesn't actually exist in the
+    /// database, it's just a convience property for accessing the titles via the OrderTitle join 
+    /// table.
+    /// </summary>
+    public List<Order> AffiliatedOrders { get; set; } = [];
+
+    /// <summary>
+    /// The indexicies of the title in the different orders. 
+    /// </summary>
+    public List<OrderTitle> AffiliatedOrderIndicies { get; set; } = [];
 }
