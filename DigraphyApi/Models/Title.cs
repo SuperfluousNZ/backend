@@ -12,6 +12,26 @@ public class Title
     public DateTime ReleasedAtUrc { get; set; }
     public string Description { get; set; } = null!;
     public int? TmdbId { get; set; }
-    public List<Factoid> Factoids { get; set; } = [];
+
+    /// <summary>
+    /// Factoids that are from this title.
+    /// </summary>
+    public List<Factoid> ContainedFactoids { get; set; } = [];
+
+    /// <summary>
+    /// Collections that this title belongs to.
+    /// </summary>
     public List<Collection> Collections { get; set; } = [];
+
+    /// <summary>
+    /// Factoids that are required to know prior to this title. Note that this relation doesn't
+    /// actually exist in the database, it's just a convience property for accessing the factoids
+    /// via the FactoidsImportance join table. 
+    /// </summary>
+    public List<Factoid> RequiredFactoids { get; set; } = [];
+
+    /// <summary>
+    /// The importance of factoids that are required to know prior to this title.
+    /// </summary>
+    public List<FactoidsImportance> RequiredFactoidsImportance { get; set; } = [];
 }

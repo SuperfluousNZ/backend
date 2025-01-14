@@ -8,5 +8,9 @@ public class Collection
     public int Id { get; set; }
     public string Name { get; set; } = null!;
     public bool IsVerified { get; set; }
-    public List<Title> Titles { get; set; } = [];
+
+    /// <summary>
+    /// Titles that are contained in this collection.
+    /// </summary>
+    public List<Title> ContainedTitles { get; set; } = [];
 }
