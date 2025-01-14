@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Collection> Collections { get; set; }
     public DbSet<Factoid> Factoids { get; set; }
+    public DbSet<Order> Orders { get; set; }
     public DbSet<Title> Titles { get; set; }
     public DbSet<Todo> Todos { get; set; }
     public DbSet<Topic> Topics { get; set; }
@@ -21,7 +22,7 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<Title>()
             .HasMany(t => t.Collections)
-            .WithMany(c => c.ContainedTitles);
+            .WithMany(c => c.Titles);
 
         modelBuilder.Entity<Title>()
             .HasMany(t => t.RequiredFactoids)

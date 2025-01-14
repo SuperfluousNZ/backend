@@ -12,5 +12,10 @@ public class Collection
     /// <summary>
     /// Titles that are contained in this collection.
     /// </summary>
-    public List<Title> ContainedTitles { get; set; } = [];
+    public List<Title> Titles { get; set; } = [];
+
+    /// <summary>
+    /// Orders that belong to this collection.
+    /// </summary>
+    public List<Order> Orders { get; set; } = [];
 }
