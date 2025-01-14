@@ -28,5 +28,9 @@ public class AppDbContext : DbContext
             .HasMany(t => t.RequiredFactoids)
             .WithMany(f => f.DependentTitles)
             .UsingEntity<FactoidsImportance>();
+
+        modelBuilder.Entity<Factoid>()
+            .HasMany(f => f.Topics)
+            .WithMany(t => t.AffiliatedFactoids);
     }
 }
