@@ -17,11 +17,16 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Title>()
-            .HasMany(t => t.Factoids)
-            .WithMany(f => f.Titles);
+            .HasMany(t => t.ContainedFactoids)
+            .WithMany(f => f.AffilitatedTitles);
 
         modelBuilder.Entity<Title>()
             .HasMany(t => t.Collections)
-            .WithMany(c => c.Titles);
+            .WithMany(c => c.ContainedTitles);
+
+        modelBuilder.Entity<Title>()
+            .HasMany(t => t.RequiredFactoids)
+            .WithMany(f => f.DependentTitles)
+            .UsingEntity<FactoidsImportance>();
     }
 }
