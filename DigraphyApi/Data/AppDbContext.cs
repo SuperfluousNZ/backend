@@ -22,7 +22,7 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<Title>()
             .HasMany(t => t.Collections)
-            .WithMany(c => c.ContainedTitles);
+            .WithMany(c => c.Titles);
 
         modelBuilder.Entity<Title>()
             .HasMany(t => t.RequiredFactoids)
