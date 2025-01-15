@@ -7,10 +7,17 @@ namespace DigraphyApi.Services;
 
 public class OrderService(IOrderRepository orderRepository, IMapper mapper) : IOrderService
 {
-    public async Task<Result<ICollection<OrderDto>>> GetOrdersAsync()
+    public async Task<Result<ICollection<OrderDto>>> GetOrdersAsync(int? collectionId, bool isVerified)
     {
-        var orders = await orderRepository.GetOrdersAsync();
-
-        return mapper.Map<List<OrderDto>>(orders);
+        if (collectionId == null)
+        {
+            var orders = await orderRepository.GetOrdersAsync(isVerified);
+            return mapper.Map<List<OrderDto>>(orders);
+        }
+        else
+        {
+            var orders = await orderRepository.GetOrdersByCollectionIdAsync(collectionId.Value, isVerified);
+            return mapper.Map<List<OrderDto>>(orders);
+        }
     }
 }
