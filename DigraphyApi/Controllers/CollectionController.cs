@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DigraphyApi.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/")]
 [ApiController]
 public class CollectionController(ICollectionService collectionService) : Controller
 {
+    [Route("collections")]
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Collection>))]
     public async Task<ActionResult<List<CollectionDto>>> GetCollections()
