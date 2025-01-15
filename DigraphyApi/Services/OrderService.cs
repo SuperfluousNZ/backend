@@ -9,15 +9,9 @@ public class OrderService(IOrderRepository orderRepository, IMapper mapper) : IO
 {
     public async Task<Result<ICollection<OrderDto>>> GetOrdersAsync(int? collectionId, bool isVerified)
     {
-        if (collectionId == null)
-        {
-            var orders = await orderRepository.GetOrdersAsync(isVerified);
-            return mapper.Map<List<OrderDto>>(orders);
-        }
-        else
-        {
-            var orders = await orderRepository.GetOrdersByCollectionIdAsync(collectionId.Value, isVerified);
-            return mapper.Map<List<OrderDto>>(orders);
-        }
+        var orders = collectionId == null
+            ? await orderRepository.GetOrdersAsync(isVerified)
+            : await orderRepository.GetOrdersByCollectionIdAsync(collectionId.Value, isVerified);
+        return mapper.Map<List<OrderDto>>(orders);
     }
 }
