@@ -7,6 +7,7 @@ public class Order
     [Key]
     public int Id { get; set; }
     public string Name { get; set; } = null!;
+    public string Description { get; set; } = null!;
     public bool IsVerified { get; set; }
     public DateTime CreatedAtUtc { get; set; }
     public DateTime EditedAtUtc { get; set; }
