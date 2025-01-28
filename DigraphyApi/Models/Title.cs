@@ -40,10 +40,10 @@ public class Title
     /// database, it's just a convience property for accessing the titles via the OrderTitle join 
     /// table.
     /// </summary>
-    public List<Order> AffiliatedOrders { get; set; } = [];
+    public List<Order> Orders { get; set; } = [];
 
     /// <summary>
     /// The indexicies of the title in the different orders. 
     /// </summary>
-    public List<OrderTitle> AffiliatedOrderIndicies { get; set; } = [];
+    public List<OrderTitle> OrderIndicies { get; set; } = [];
 }

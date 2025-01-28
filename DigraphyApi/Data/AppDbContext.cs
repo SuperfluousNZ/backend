@@ -19,18 +19,18 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Title>()
             .HasMany(t => t.ContainedFactoids)
             .WithMany(f => f.AffilitatedTitles);
-
-        modelBuilder.Entity<Title>()
-            .HasMany(t => t.Collections)
-            .WithMany(c => c.Titles);
-
+        
         modelBuilder.Entity<Title>()
             .HasMany(t => t.RequiredFactoids)
             .WithMany(f => f.DependentTitles)
             .UsingEntity<FactoidsImportance>();
 
         modelBuilder.Entity<Title>()
-            .HasMany(t => t.AffiliatedOrders)
+            .HasMany(t => t.Collections)
+            .WithMany(c => c.Titles);
+
+        modelBuilder.Entity<Title>()
+            .HasMany(t => t.Orders)
             .WithMany(o => o.Titles)
             .UsingEntity<OrderTitle>();
 
