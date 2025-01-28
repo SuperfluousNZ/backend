@@ -9,6 +9,6 @@ public class CollectionRepository(AppDbContext context) : ICollectionRepository
 {
     public async Task<ICollection<Collection>> GetCollectionsAsync()
     {
-        return await context.Collections.OrderBy(c => c.Id).ToListAsync();
+        return await context.Collections.ToListAsync();
     }
 }
