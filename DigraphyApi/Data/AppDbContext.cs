@@ -21,21 +21,21 @@ public class AppDbContext : DbContext
             .WithMany(f => f.AffilitatedTitles);
 
         modelBuilder.Entity<Title>()
-            .HasMany(t => t.Collections)
-            .WithMany(c => c.Titles);
-
-        modelBuilder.Entity<Title>()
             .HasMany(t => t.RequiredFactoids)
             .WithMany(f => f.DependentTitles)
             .UsingEntity<FactoidsImportance>();
 
         modelBuilder.Entity<Title>()
-            .HasMany(t => t.AffiliatedOrders)
+            .HasMany(t => t.Collections)
+            .WithMany(c => c.Titles);
+
+        modelBuilder.Entity<Title>()
+            .HasMany(t => t.Orders)
             .WithMany(o => o.Titles)
             .UsingEntity<OrderTitle>();
 
         modelBuilder.Entity<Factoid>()
             .HasMany(f => f.Topics)
-            .WithMany(t => t.AffiliatedFactoids);
+            .WithMany(t => t.Factoids);
     }
 }

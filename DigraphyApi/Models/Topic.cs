@@ -12,5 +12,5 @@ public class Topic
     /// <summary>
     /// Factoids that are related to this topic.
     /// </summary>
-    public List<Factoid> AffiliatedFactoids { get; set; } = [];
+    public List<Factoid> Factoids { get; set; } = [];
 }
