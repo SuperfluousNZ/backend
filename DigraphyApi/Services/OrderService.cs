@@ -24,7 +24,7 @@ public class OrderService(IOrderRepository orderRepository, IMapper mapper) : IO
             return Errors.OrderNotFound(orderId);
         }
 
-        var titles = order.Titles.OrderBy(t => t.ReleasedAtUrc).ToList();
+        var titles = order.Titles.OrderBy(t => t.ReleasedAtUtc).ToList();
 
         return mapper.Map<List<TitleDto>>(titles);
     }

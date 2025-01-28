@@ -22,7 +22,7 @@ public class OrderController(IOrderService orderService) : Controller
     
     [HttpGet("{orderId}")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Title>))]
-    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
     public async Task<ActionResult<List<TitleDto>>> GetOrder(int orderId)
     {
         var orderResult = await orderService.GetOrderAsync(orderId);
