@@ -36,6 +36,6 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<Factoid>()
             .HasMany(f => f.Topics)
-            .WithMany(t => t.AffiliatedFactoids);
+            .WithMany(t => t.Factoids);
     }
 }
