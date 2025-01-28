@@ -17,7 +17,7 @@ public class TodoController(ITodoService todoService) : Controller
         var todosDto = todosResult.Data;
         return Ok(todosDto);
     }
-    
+
     [HttpGet("{todoId}")]
     [ProducesResponseType(200, Type = typeof(Todo))]
     [ProducesResponseType(400)]
@@ -27,7 +27,7 @@ public class TodoController(ITodoService todoService) : Controller
         var todoDto = todoResult.Data;
         return Ok(todoDto);
     }
-    
+
     [HttpPut("{todoId}")]
     [ProducesResponseType(400)]
     [ProducesResponseType(200)]
@@ -38,16 +38,16 @@ public class TodoController(ITodoService todoService) : Controller
         var todoResult = await todoService.UpdateTodoAsync(todoId, updatedTodo);
         return todoResult.ToActionResult(Ok);
     }
-    
+
     [HttpPost("/todo")]
     [ProducesResponseType(201)]
     [ProducesResponseType(400)]
     public async Task<IActionResult> CreateTodo([FromBody] CreateTodoDto createTodoDto)
     {
         var todoResult = await todoService.CreateTodoAsync(createTodoDto);
-        return todoResult.ToActionResult( todo => CreatedAtAction(nameof(GetTodo), new {todoId = todo.Id}, todo));
+        return todoResult.ToActionResult(todo => CreatedAtAction(nameof(GetTodo), new { todoId = todo.Id }, todo));
     }
-    
+
     [HttpDelete("{todoId}")]
     [ProducesResponseType(400)]
     [ProducesResponseType(204)]

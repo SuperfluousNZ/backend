@@ -4,6 +4,7 @@ using DigraphyApi.Data;
 using DigraphyApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DigraphyApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250114093103_SetupModels")]
+    partial class SetupModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,10 +111,6 @@ namespace DigraphyApi.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("EditedAtUtc")
                         .HasColumnType("timestamp with time zone");
 
@@ -167,7 +166,7 @@ namespace DigraphyApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("ReleasedAtUtc")
+                    b.Property<DateTime>("ReleasedAtUrc")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("SmallPosterUrl")
@@ -236,13 +235,13 @@ namespace DigraphyApi.Migrations
 
             modelBuilder.Entity("FactoidTopic", b =>
                 {
-                    b.Property<int>("FactoidsId")
+                    b.Property<int>("AffiliatedFactoidsId")
                         .HasColumnType("integer");
 
                     b.Property<int>("TopicsId")
                         .HasColumnType("integer");
 
-                    b.HasKey("FactoidsId", "TopicsId");
+                    b.HasKey("AffiliatedFactoidsId", "TopicsId");
 
                     b.HasIndex("TopicsId");
 
@@ -299,7 +298,7 @@ namespace DigraphyApi.Migrations
                         .IsRequired();
 
                     b.HasOne("DigraphyApi.Models.Title", null)
-                        .WithMany("OrderIndicies")
+                        .WithMany("AffiliatedOrderIndicies")
                         .HasForeignKey("TitleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -324,7 +323,7 @@ namespace DigraphyApi.Migrations
                 {
                     b.HasOne("DigraphyApi.Models.Factoid", null)
                         .WithMany()
-                        .HasForeignKey("FactoidsId")
+                        .HasForeignKey("AffiliatedFactoidsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -352,7 +351,7 @@ namespace DigraphyApi.Migrations
 
             modelBuilder.Entity("DigraphyApi.Models.Title", b =>
                 {
-                    b.Navigation("OrderIndicies");
+                    b.Navigation("AffiliatedOrderIndicies");
 
                     b.Navigation("RequiredFactoidsImportance");
                 });

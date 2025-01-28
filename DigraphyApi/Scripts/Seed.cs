@@ -1,7 +1,6 @@
 using DigraphyApi.Data;
-using DigraphyApi.Models;
 
-namespace Digraphy.Scripts;
+namespace DigraphyApi.Scripts;
 
 public class Seed(AppDbContext context)
 {
