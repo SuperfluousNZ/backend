@@ -13,7 +13,7 @@ public class OrderController(IOrderService orderService) : Controller
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Order>))]
     public async Task<ActionResult<List<OrderDto>>> GetOrders([FromQuery] int? collectionId,
-        [FromQuery] bool isVerified = true)
+        [FromQuery] bool? isVerified)
     {
         var ordersResult = await orderService.GetOrdersAsync(collectionId,isVerified);
         var ordersDto = ordersResult.Data;

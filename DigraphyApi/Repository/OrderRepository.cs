@@ -1,4 +1,5 @@
 using DigraphyApi.Data;
+using DigraphyApi.Filters;
 using DigraphyApi.Interfaces;
 using DigraphyApi.Models;
 using DigraphyApi.Utils;
