@@ -1,8 +1,6 @@
 using AutoMapper;
 using DigraphyApi.Dto;
-using DigraphyApi.Exceptions;
 using DigraphyApi.Interfaces;
-using DigraphyApi.Models;
 using DigraphyApi.Utils;
 
 namespace DigraphyApi.Services;
@@ -11,8 +9,8 @@ public class CollectionService(ICollectionRepository collectionRepository, IMapp
 {
     public async Task<Result<ICollection<CollectionDto>>> GetCollectionsAsync()
     {
-        var collection = await collectionRepository.GetCollectionsAsync();
+        var collections = await collectionRepository.GetCollectionsAsync();
 
-        return mapper.Map<List<CollectionDto>>(collection);
+        return mapper.Map<List<CollectionDto>>(collections);
     }
 }

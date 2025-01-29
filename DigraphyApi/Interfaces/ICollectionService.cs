@@ -1,5 +1,4 @@
 using DigraphyApi.Dto;
-using DigraphyApi.Models;
 using DigraphyApi.Utils;
 
 namespace DigraphyApi.Interfaces;
