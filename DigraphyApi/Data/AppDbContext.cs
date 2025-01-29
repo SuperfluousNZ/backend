@@ -34,11 +34,6 @@ public class AppDbContext : DbContext
             .WithMany(o => o.Titles)
             .UsingEntity<OrderTitle>();
 
-        modelBuilder.Entity<Title>()
-            .HasMany(t => t.AffiliatedOrders)
-            .WithMany(o => o.Titles)
-            .UsingEntity<OrderTitle>();
-
         modelBuilder.Entity<Factoid>()
             .HasMany(f => f.Topics)
             .WithMany(t => t.Factoids);
