@@ -4,6 +4,7 @@ using DigraphyApi.Mapper;
 using DigraphyApi.Models;
 using DigraphyApi.Repository;
 using DigraphyApi.Services;
+using DigraphyApi.Scripts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,10 +28,25 @@ builder.Services.AddDbContextPool<AppDbContext>(opt =>
         o => o.MapEnum<FactoidImportance>("FactoidImportance")
     );
 });
+builder.Services.AddScoped<Seed>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
+    SeedData(app);
+
+void SeedData(IHost app1)
+{
+    var scopedFactory = app1.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<Seed>();
+        service.SeedDataContext();
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {

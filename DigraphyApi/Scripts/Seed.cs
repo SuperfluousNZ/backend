@@ -1,5 +1,6 @@
 using DigraphyApi.Data;
 using DigraphyApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigraphyApi.Scripts;
 
@@ -7,7 +8,6 @@ public class Seed(AppDbContext context)
 {
     public void SeedDataContext()
     {
-        
         // Collections
 
         Collection collection0 = new Collection
@@ -16,31 +16,31 @@ public class Seed(AppDbContext context)
             Name = "Marvel Cinematic Universe",
             IsVerified = true
         };
-        
+
         // Orders
 
         Order order0 = new Order
         {
             Id = 0,
             Name = "Release Order",
-            Description = "" ,
+            Description = "",
             IsVerified = true,
-            CreatedAtUtc = new DateTime(2025, 2, 23),
-            EditedAtUtc = new DateTime(2025, 2, 23),
+            CreatedAtUtc = new DateTime(2025, 2, 23, 0, 0, 0, DateTimeKind.Utc),
+            EditedAtUtc = new DateTime(2025, 2, 23, 0, 0, 0, DateTimeKind.Utc),
             Collection = collection0
         };
-        
+
         Order order1 = new Order
         {
             Id = 1,
             Name = "Chronological",
-            Description = "" ,
+            Description = "",
             IsVerified = true,
-            CreatedAtUtc = new DateTime(2025, 2, 24),
-            EditedAtUtc = new DateTime(2025, 2, 24),
+            CreatedAtUtc = new DateTime(2025, 2, 24, 0, 0, 0, DateTimeKind.Utc),
+            EditedAtUtc = new DateTime(2025, 2, 24, 0, 0, 0, DateTimeKind.Utc),
             Collection = collection0
         };
-        
+
         // Titles
 
         Title title0 = new Title
@@ -49,7 +49,7 @@ public class Seed(AppDbContext context)
             Name = "Iron Man",
             SmallPosterUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
             LargePosterUrl = "https://www.themoviedb.org/t/p/original/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
-            ReleasedAtUtc = new DateTime(2008, 4, 30),
+            ReleasedAtUtc = new DateTime(2008, 4, 30, 0, 0, 0, DateTimeKind.Utc),
             Description = "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
             TmdbId = 1726
         };
@@ -60,7 +60,7 @@ public class Seed(AppDbContext context)
             Name = "The Incredible Hulk",
             SmallPosterUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gKzYx79y0AQTL4UAk1cBQJ3nvrm.jpg",
             LargePosterUrl = "https://www.themoviedb.org/t/p/original/gKzYx79y0AQTL4UAk1cBQJ3nvrm.jpg",
-            ReleasedAtUtc = new DateTime(2008, 6, 12),
+            ReleasedAtUtc = new DateTime(2008, 6, 12, 0, 0, 0, DateTimeKind.Utc),
             Description = "Scientist Bruce Banner scours the planet for an antidote to the unbridled force of rage within him: the Hulk. But when the military masterminds who dream of exploiting his powers force him back to civilization, he finds himself coming face to face with a new, deadly foe.",
             TmdbId = 1724
         };
@@ -71,7 +71,7 @@ public class Seed(AppDbContext context)
             Name = "Iron Man 2",
             SmallPosterUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6WBeq4fCfn7AN0o21W9qNcRF2l9.jpg",
             LargePosterUrl = "https://www.themoviedb.org/t/p/original/6WBeq4fCfn7AN0o21W9qNcRF2l9.jpg",
-            ReleasedAtUtc = new DateTime(2010, 5, 7),
+            ReleasedAtUtc = new DateTime(2010, 5, 7, 0, 0, 0, DateTimeKind.Utc),
             Description = "With the world now aware of his dual life as the armored superhero Iron Man, billionaire inventor Tony Stark faces pressure from the government, the press and the public to share his technology with the military. Unwilling to let go of his invention, Stark, with Pepper Potts and James 'Rhodey' Rhodes at his side, must forge new alliances – and confront powerful enemies.",
             TmdbId = 10138
         };
@@ -82,7 +82,7 @@ public class Seed(AppDbContext context)
             Name = "Thor",
             SmallPosterUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/prSfAi1xGrhLQNxVSUFh61xQ4Qy.jpg",
             LargePosterUrl = "https://www.themoviedb.org/t/p/original/prSfAi1xGrhLQNxVSUFh61xQ4Qy.jpg",
-            ReleasedAtUtc = new DateTime(2011, 5, 6),
+            ReleasedAtUtc = new DateTime(2011, 5, 6, 0, 0, 0, DateTimeKind.Utc),
             Description = "Against his father Odin's will, The Mighty Thor - a powerful but arrogant warrior god - recklessly reignites an ancient war. Thor is cast down to Earth and forced to live among humans as punishment. Once here, Thor learns what it takes to be a true hero when the most dangerous villain of his world sends the darkest forces of Asgard to invade Earth.",
             TmdbId = 10195
         };
@@ -93,7 +93,7 @@ public class Seed(AppDbContext context)
             Name = "Captain America: The First Avenger",
             SmallPosterUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg",
             LargePosterUrl = "https://www.themoviedb.org/t/p/original/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg",
-            ReleasedAtUtc = new DateTime(2011, 7, 22),
+            ReleasedAtUtc = new DateTime(2011, 7, 22, 0, 0, 0, DateTimeKind.Utc),
             Description = "During World War II, Steve Rogers is a sickly man from Brooklyn who's transformed into super-soldier Captain America to aid in the war effort. Rogers must stop the Red Skull – Adolf Hitler's ruthless head of weaponry, and the leader of an organization that intends to use a mysterious device of untold powers for world domination.",
             TmdbId = 1771
         };
@@ -104,7 +104,7 @@ public class Seed(AppDbContext context)
             Name = "The Avengers",
             SmallPosterUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
             LargePosterUrl = "https://image.tmdb.org/t/p/original/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
-            ReleasedAtUtc = new DateTime(2012, 4, 25),
+            ReleasedAtUtc = new DateTime(2012, 4, 25, 0, 0, 0, DateTimeKind.Utc),
             Description = "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
             TmdbId = 24428
         };
@@ -236,7 +236,7 @@ public class Seed(AppDbContext context)
             Id = 20,
             Description = "Steve intentionally crashed HYDRA’s Valkyrie bomber airship into the icy waters of the Arctic where he remained frozen for almost seventy years until being discovered and recovered by SHIELD."
         };
-        
+
         // Collection Titles
 
         // MCU
@@ -250,7 +250,7 @@ public class Seed(AppDbContext context)
             title5
         };
         collection0.Titles.AddRange(colTitles0);
-        
+
         // Order Titles
 
         // release order
@@ -290,7 +290,7 @@ public class Seed(AppDbContext context)
             OrderId = 0,
             Index = 5
         };
-            
+
         // chronological order
         var ordTitles6 = new OrderTitle
         {
@@ -328,7 +328,7 @@ public class Seed(AppDbContext context)
             OrderId = 1,
             Index = 5
         };
-        
+
         // contained factoids relation
 
         var conFactoids0 = new List<Factoid> // Iron Man
@@ -342,14 +342,14 @@ public class Seed(AppDbContext context)
             factoid6
         };
         title0.ContainedFactoids.AddRange(conFactoids0);
-        
+
         var conFactoids1 = new List<Factoid> // Hulk
         {
             factoid8,
             factoid9
         };
         title1.ContainedFactoids.AddRange(conFactoids1);
-        
+
         var conFactoids2 = new List<Factoid> // Iron Man 2
         {
             factoid0,
@@ -358,7 +358,7 @@ public class Seed(AppDbContext context)
             factoid11
         };
         title2.ContainedFactoids.AddRange(conFactoids2);
-        
+
         var conFactoids3 = new List<Factoid> // Thor
         {
             factoid12,
@@ -367,7 +367,7 @@ public class Seed(AppDbContext context)
             factoid15
         };
         title3.ContainedFactoids.AddRange(conFactoids3);
-        
+
         var conFactoids4 = new List<Factoid> // Captain America
         {
             factoid16,
@@ -377,7 +377,7 @@ public class Seed(AppDbContext context)
             factoid20
         };
         title4.ContainedFactoids.AddRange(conFactoids4);
-        
+
         // required factoids relation
 
         // Iron Man 2
@@ -423,7 +423,7 @@ public class Seed(AppDbContext context)
             TitleId = 2,
             Importance = FactoidImportance.MUST
         };
-        
+
         // Thor
         var reqFactoids7 = new FactoidsImportance
         {
@@ -431,7 +431,7 @@ public class Seed(AppDbContext context)
             TitleId = 3,
             Importance = FactoidImportance.MUST
         };
-        
+
         // Avengers
         var reqFactoids8 = new FactoidsImportance
         {
@@ -530,7 +530,9 @@ public class Seed(AppDbContext context)
             {
                 collection0
             };
+            context.Collections.RemoveRange(context.Collections);
             context.Collections.AddRange(collections);
+            context.SaveChanges();
         }
 
         if (!context.Orders.Any())
@@ -540,7 +542,9 @@ public class Seed(AppDbContext context)
                 order0,
                 order1
             };
+            context.Orders.RemoveRange(context.Orders);
             context.Orders.AddRange(orders);
+            context.SaveChanges();
         }
 
         if (!context.Titles.Any())
@@ -554,7 +558,9 @@ public class Seed(AppDbContext context)
                 title4,
                 title5
             };
+            context.Titles.RemoveRange(context.Titles);
             context.Titles.AddRange(titles);
+            context.SaveChanges();
         }
 
         if (!context.Factoids.Any())
@@ -583,7 +589,9 @@ public class Seed(AppDbContext context)
                 factoid19,
                 factoid20
             };
+            context.Factoids.RemoveRange(context.Factoids);
             context.Factoids.AddRange(factoids);
+            context.SaveChanges();
         }
 
         if (!context.FactoidsImportances.Any())
@@ -614,7 +622,9 @@ public class Seed(AppDbContext context)
                 reqFactoids21,
                 reqFactoids22
             };
+            context.FactoidsImportances.RemoveRange(context.FactoidsImportances);
             context.FactoidsImportances.AddRange(factoidsImportances);
+            context.SaveChanges();
         }
 
         if (!context.OrderTitles.Any())
@@ -634,7 +644,9 @@ public class Seed(AppDbContext context)
                 ordTitles10,
                 ordTitles11
             };
+            context.OrderTitles.RemoveRange(context.OrderTitles);
             context.OrderTitles.AddRange(orderTitles);
+            context.SaveChanges();
         }
 
         context.SaveChanges();
