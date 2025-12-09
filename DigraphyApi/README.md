@@ -37,4 +37,4 @@ dotnet user-secrets set "ConnectionStrings:DigraphyDatabase" "Host=...;Database=
 - Run `dotnet ef database update`.
 
 ### Run the application
-- Run `dotnet run`, (this should automatically launch a tab in your browser).
+- Run `dotnet run`, (this should automatically launch a tab in your browser)

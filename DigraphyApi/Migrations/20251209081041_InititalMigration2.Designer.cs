@@ -4,6 +4,7 @@ using DigraphyApi.Data;
 using DigraphyApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DigraphyApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251209081041_InititalMigration2")]
+    partial class InititalMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,7 +94,7 @@ namespace DigraphyApi.Migrations
 
                     b.HasIndex("TitleId");
 
-                    b.ToTable("FactoidsImportances");
+                    b.ToTable("FactoidsImportance");
                 });
 
             modelBuilder.Entity("DigraphyApi.Models.Order", b =>
@@ -144,7 +147,7 @@ namespace DigraphyApi.Migrations
 
                     b.HasIndex("TitleId");
 
-                    b.ToTable("OrderTitles");
+                    b.ToTable("OrderTitle");
                 });
 
             modelBuilder.Entity("DigraphyApi.Models.Title", b =>

@@ -23,4 +23,9 @@ public class OrderRepository(AppDbContext context) : IOrderRepository
         }
         return await query.OrderBy(o => o.Id).ToListAsync();
     }
+
+    public async Task<Order?> GetOrderAsync(int orderId)
+    {
+        return await context.Orders.Include(o => o.OrderTitles.OrderBy(ot => ot.Index)).ThenInclude(ot => ot.Title).FirstOrDefaultAsync(o => o.Id == orderId);
+    }
 }
