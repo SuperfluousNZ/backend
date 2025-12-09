@@ -13,7 +13,7 @@ public class Errors
 
     public static Error TodoNotFound(int todoId) =>
         new(Codes.TodoNotFound, $"No Todo found for id {todoId}", HttpStatusCode.NotFound);
-    
+
     public static Error OrderNotFound(int orderId) =>
         new(Codes.OrderNotFound, $"No Order found for id {orderId}", HttpStatusCode.NotFound);
 }

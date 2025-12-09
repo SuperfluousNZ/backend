@@ -15,17 +15,17 @@ public class OrderService(IOrderRepository orderRepository, IMapper mapper) : IO
         return mapper.Map<List<OrderDto>>(orders);
     }
 
-    public async Task<Result<ICollection<TitleDto>>> GetOrderAsync(int orderId)
+    public async Task<Result<OrderDto>> GetOrderAsync(int orderId)
     {
         var order = await orderRepository.GetOrderAsync(orderId);
-        
+
         if (order == null)
         {
             return Errors.OrderNotFound(orderId);
         }
 
-        var titles = order.Titles.OrderBy(t => t.ReleasedAtUtc).ToList();
+        var titles = order.OrderTitles.OrderBy(ot => ot.Index).Select(ot => ot.Title).ToList();
 
-        return mapper.Map<List<TitleDto>>(titles);
+        return mapper.Map<OrderDto>(titles);
     }
 }
